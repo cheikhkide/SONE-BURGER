@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panier - SONE BURGER</title>
+    <link rel="shortcut icon" href="./images/icone.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: #ffbb02 !important;
+        }
+        #navbar{
+            background:#000;
+        }
+        .navbar {
+            height: 70px;
+            padding: 0 !important;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .logo img {
+            height: 100px;
+            width: auto;
+            margin-top: 25px;
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 1001;
+        }
+        /* Style pour le bouton burger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+            z-index: 1100;
+        }
+        .hamburger span {
+            width: 30px;
+            height: 3px;
+            background: #fff;
+            transition: all 0.3s ease;
+        }
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+               <a href="index.html"><img src="./images/icone.png" alt=""></a> 
+            </div>
+
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html#menu" class="nav-link">Menu</a></li>
+                <li><a href="index.html#about" class="nav-link">À Propos</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                <li><a href="panier.html" class="nav-link">
+                        <i class="fas fa-shopping-cart"></i> Panier
+                        <span class="cart-count">0</span>
+                    </a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Panier Section -->
+    <section class="cart-section">
+        <div class="container">
+            <h1 class="page-title">Votre Panier</h1>
+            
+            <div class="cart-container">
+                <div class="cart-items">
+                    <div id="cart-empty" class="cart-empty" style="display: none;">
+                        <i class="fas fa-shopping-basket"></i>
+                        <h2>Votre panier est vide</h2>
+                        <p>Découvrez nos délicieux burgers!</p>
+                        <a href="index.html#menu" class="cta-button">Voir le Menu</a>
+                    </div>
+                    
+                    <div id="cart-content" class="cart-content">
+                        <!-- Les articles du panier seront ajoutés dynamiquement -->
+                    </div>
+                </div>
+                
+                <div class="cart-summary">
+                    <div class="summary-card">
+                        <h3>Résumé de la Commande</h3>
+                        <div class="summary-item">
+                            <span>Sous-total</span>
+                            <span id="subtotal">0 CFA</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Livraison</span>
+                            <span id="delivery">500 CFA</span>
+                        </div>
+                        <div class="summary-item total">
+                            <span>Total</span>
+                            <span id="total">0 CFA</span>
+                        </div>
+                        
+                        <button id="checkout-btn" class="checkout-btn">
+                            <i class="fas fa-credit-card"></i>
+                            Passer la Commande
+                        </button>
+                        
+                        <a href="index.html#menu" class="continue-shopping">
+                            <i class="fas fa-arrow-left"></i>
+                            Continuer vos achats
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    
+                    <span>SONE BURGER</span>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+                <div class="footer-text">
+                    <p>&copy; 2024 SONE BURGER. Tous droits réservés.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="cart.js"></script>
+</body>
+</html>

@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SONE BURGER</title>
+    <link rel="shortcut icon" href="./images/icone.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .navbar {
+            height: 70px;
+            padding: 0 !important;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo img {
+            height: 100px;
+            width: auto;
+            margin-top: 25px;
+            /* Ajusté pour centrer le logo par rapport à la barre de 70px */
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 1001;
+        }
+
+        /* Style pour le bouton burger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+            z-index: 1100;
+        }
+
+        .hamburger span {
+            width: 30px;
+            height: 3px;
+            background: #fff;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html"><img src="./images/icone.png" alt="SONE BURGER"></a>
+            </div>
+
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#menu" class="nav-link">Menu</a></li>
+                <li><a href="#about" class="nav-link">À Propos</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="panier.html" class="nav-link">
+                        <i class="fas fa-shopping-cart"></i> Panier
+                        <span class="cart-count">0</span>
+                    </a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Carousel Section -->
+    <section id="home" class="hero-carousel">
+        <div class="carousel-container">
+            <div class="carousel-slide">
+                <div class="slide-image-full">
+                    <img src="./images/poto2.jpg" alt="Ingrédients frais">
+                    <div class="slide-overlay">
+                        <div class="slide-content">
+                            <h1>Ingrédients Frais</h1>
+                            <p>Viande de qualité supérieure, légumes croquants et sauces maison</p>
+                            <button class="cta-button">Découvrez le Menu</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-slide active">
+                <div class="slide-image-full">
+                    <img src="./images/poto1.jpg" alt="Burger gourmet">
+                    <div class="slide-overlay">
+                        <div class="slide-content">
+                            <h1>Le Tacos Gourmand</h1>
+                            <p>Découvrez nos burgers artisanaux préparés avec des ingrédients frais et locaux</p>
+                            <button class="cta-button">Commander Maintenant</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="carousel-slide">
+                <div class="slide-image-full">
+                    <img src="./images/pizza.jpg" alt="Livraison">
+                    <div class="slide-overlay">
+                        <div class="slide-content">
+                            <h1>La Fromagia</h1>
+                            <p>Une pizza riche en fromage fondant, avec une base savoureuse et une texture irrésistible.
+                            </p>
+                            <button class="cta-button">Commander en Ligne</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-slide">
+                <div class="slide-image-full">
+                    <img src="./images/shawarma.jpg" alt="Spicy Chicken">
+                    <div class="slide-overlay">
+                        <div class="slide-content">
+                            <h1>Le Shawarma Épicé</h1>
+                            <p>Viande marinée et grillée, légumes frais et sauce savoureuse, le tout dans un pain chaud
+                                et moelleux.</p>
+                            <button class="cta-button">Commander Maintenant</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-slide">
+                <div class="slide-image-full">
+                    <img src="./images/sandwich.jpg" alt="Truffle Burger">
+                    <div class="slide-overlay">
+                        <div class="slide-content">
+                            <h1>Le Méga Mix</h1>
+                            <p>Sandwich généreux avec viande, poulet, fromage et une délicieuse sauce spéciale.</p>
+                            <button class="cta-button">Découvrez le Menu</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-slide">
+                <div class="slide-image-full">
+                    <img src="./images/sone.png" alt="Truffle Burger">
+                    <div class="slide-overlay">
+                        <div class="slide-content">
+                            <h1>Nous livrons partout</h1>
+                            <p>Livraison rapide et fiable, vos plats arrivent chauds et savoureux directement chez vous.</p>
+                            <button class="cta-button">Nous contacter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-controls">
+            <button class="carousel-btn prev-btn" id="prevBtn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-btn next-btn" id="nextBtn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <div class="carousel-indicators">
+            <span class="indicator active" data-slide="0"></span>
+            <span class="indicator" data-slide="1"></span>
+            <span class="indicator" data-slide="2"></span>
+            <span class="indicator" data-slide="3"></span>
+            <span class="indicator" data-slide="4"></span>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu-section">
+        <div class="container">
+            <h2 class="section-title">Notre Menu</h2>
+
+            <!-- Burgers Classiques -->
+            <h3 class="menu-category">Burgers Classiques</h3>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="menu-image">
+                        <img src="./images/burgerclassique.jpg" alt="Classic Burger">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Burger Steak</h3>
+                        <p>Steak de bœuf 150g juteux, fromage fondant, laitue croquante, tomate fraîche, oignon et sauce
+                            maison savoureuse</p>
+                        <div class="menu-footer">
+                            <span class="price">8.90</span>
+                            <button class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-image">
+                        <img src="./images/burgerpoulet.jpg" alt="burger poulet"
+                            alt="Cheese Burger">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Burger poulet</h3>
+                        <p>Un burger au poulet croustillant, garni de légumes frais et d’une sauce savoureuse dans un pain moelleux.</p>
+                        <div class="menu-footer">
+                            <span class="price">10.90</span>
+                            <button class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-image">
+                        <img src="./images/doublesteak.jpg" alt="double steak"
+                            alt="Veggie Burger">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Double Steak</h3>
+                        <p>Un burger composé de deux steaks de bœuf, garni de légumes frais et d’une sauce savoureuse dans un pain moelleux.</p>
+                        <div class="menu-footer">
+                            <span class="price">9.90</span>
+                            <button class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Burgers Gourmets -->
+            <h3 class="menu-category">.............</h3>
+             <p></p>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="menu-image">
+                        <img src="./images/tacos.jpg"
+                            alt="BBQ Bacon">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Tacos</h3>
+                        <p>Un tacos à la viande tendre et savoureuse, accompagné d’une sauce tomate gourmande dans une tortilla chaude et bien roulée.</p>
+                        <div class="menu-footer">
+                            <span class="price">12.90</span>
+                            <button class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-image">
+                        <img src="./images/shawarm.jpg" alt="shawarma">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Shawarma</h3>
+                        <p>Un shawarma savoureux composé de viande grillée finement tranchée, de légumes frais  enveloppés dans une feuille de galette.</p>
+                        <div class="menu-footer">
+                            <span class="price">18.90</span>
+                            <button class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-image">
+                        <img src="./images/sandwicha.jpg" alt="sandwich"
+                            alt="Spicy Chicken">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Sandwich</h3>
+                        <p>Tout le goût de la viande grillée et des légumes frais dans un pain artisanal généreux.Croustillant à l'extérieur, fondant à l'intérieur.</p>
+                        <div class="menu-footer">
+                            <span class="price">11.90</span>
+                            <button class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accompagnements -->
+            <h3 class="menu-category">Accompagnements</h3>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1576107232686-3bd60d6d4a20?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                            alt="Frites">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Frites Maison</h3>
+                        <p>Frites fraîches maison, sel de mer, ketchup et mayonnaise</p>
+                        <div class="menu-footer">
+                            <span class="price">3.90</span>
+                            <button class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1582234372316-1e3b2eb0d88b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                            alt="Onion Rings">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Onion Rings</h3>
+                        <p>Beignets d'oignons croustillants, sauce barbecue</p>
+                        <div class="menu-footer">
+                            <span class="price">4.50</span>
+                            <button class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                            alt="Salade">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Salade César</h3>
+                        <p>Laitue romaine, poulet grillé, parmesan, croûtons, sauce César</p>
+                        <div class="menu-footer">
+                            <span class="price">7.90</span>
+                            <button class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Boissons -->
+            <h3 class="menu-category">Boissons</h3>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                            alt="Coca-Cola">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Coca-Cola</h3>
+                        <p>Soda classique rafraîchissant</p>
+                        <div class="menu-footer">
+                            <span class="price">2.50</span>
+                            <button class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1600271886742-f049cd451bba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                            alt="Jus">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Jus de Fruits</h3>
+                        <p>Jus d'orange, pomme ou ananas 100% pur jus</p>
+                        <div class="menu-footer">
+                            <span class="price">3.00</span>
+                            <button class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="menu-image">
+                        <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                            alt="Bière">
+                    </div>
+                    <div class="menu-info">
+                        <h3>Bière Craft</h3>
+                        <p>Bière artisanale locale, blonde ou ambrée</p>
+                        <div class="menu-footer">
+                            <span class="price">4.50</span>
+                            <button class="add-to-cart">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>À Propos de SONE BURGER</h2>
+                    <p>Fondé en 2024, SONE BURGER est né d’une passion pour les burgers authentiques et généreux. Nous
+                        proposons des recettes savoureuses, préparées avec des ingrédients frais et de qualité.
+
+                        Chaque burger est soigneusement élaboré pour offrir une expérience gourmande, que vous soyez
+                        amateur de classiques ou en quête de nouvelles saveurs.
+
+                        Chez SONE BURGER, nous mettons le plaisir et la convivialité au cœur de chaque repas.</p>
+                    <div class="features">
+                        <div class="feature">
+                            <i class="fas fa-leaf"></i>
+                            <span>Ingrédients Locaux</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-award"></i>
+                            <span>Qualité Premium</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-heart"></i>
+                            <span>Fait avec Amour</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                        alt="Restaurant">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2>Contactez-nous</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Adresse</h3>
+                            <p>Nouakchott <br>PK 9</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Téléphone</h3>
+                            <a href="tel:49057538">
+                                <p class="tel">49 05 75 38</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>SONEBURGER@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h3>Horaires</h3>
+                            <p>Lun-Dim: 09h00 - 23h00</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <input type="text" placeholder="Votre Nom" required>
+                    <input type="email" placeholder="Votre Email" required>
+                    <textarea placeholder="Votre Message" rows="5" required></textarea>
+                    <button type="submit" class="submit-btn">Envoyer le Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span>SONE BURGER</span>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+                <div class="footer-text">
+                    <p>@ 2026 SONE BURGER. Tous droits réservés.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script-fixed.js"></script>
+</body>
+
+</html>
