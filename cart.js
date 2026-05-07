@@ -10,7 +10,7 @@ const navMenu = document.getElementById('nav-menu');
 
 // Cart Data
 let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-let deliveryFee = 500;
+let deliveryFee = 50;
 let promoDiscount = 0;
 
 // Initialize
@@ -67,7 +67,7 @@ function createCartItemElement(item) {
         </div>
         <div class="cart-item-info">
             <h3>${item.name}</h3>
-            <p class="item-price">${item.price} CFA</p>
+            <p class="item-price">${parseFloat(item.price).toFixed(2)} MRU</p>
         </div>
         <div class="cart-item-quantity">
             <button class="quantity-btn minus" data-id="${item.id}">-</button>
@@ -75,7 +75,7 @@ function createCartItemElement(item) {
             <button class="quantity-btn plus" data-id="${item.id}">+</button>
         </div>
         <div class="cart-item-total">
-            <span class="item-total">${(parseFloat(item.price) * item.quantity).toFixed(2)} CFA</span>
+            <span class="item-total">${(parseFloat(item.price) * item.quantity).toFixed(2)} MRU</span>
             <button class="remove-item" data-id="${item.id}">
                 <i class="fas fa-trash"></i>
             </button>
@@ -126,8 +126,8 @@ function updateSummary() {
     
     const total = subtotal + deliveryFee - promoDiscount;
     
-    subtotalElement.textContent = subtotal.toFixed(2) + ' CFA';
-    totalElement.textContent = total.toFixed(2) + ' CFA';
+    subtotalElement.textContent = subtotal.toFixed(2) + ' MRU';
+    totalElement.textContent = total.toFixed(2) + ' MRU';
 }
 
 // Update Cart Count
@@ -155,7 +155,7 @@ checkoutBtn.addEventListener('click', function() {
     cartItems.forEach(item => {
         const itemPrice = parseFloat(item.price);
         const itemTotal = itemPrice * item.quantity;
-        message += `• *${item.name}*\n  Quantité: ${item.quantity} x ${itemPrice.toFixed(2)} CFA\n  Total produit: *${itemTotal.toFixed(2)} CFA*\n\n`;
+        message += `• *${item.name}*\n  Quantité: ${item.quantity} x ${itemPrice.toFixed(2)} MRU\n  Total produit: *${itemTotal.toFixed(2)} MRU*\n\n`;
     });
     
     const subtotal = cartItems.reduce((total, item) => {
@@ -164,9 +164,9 @@ checkoutBtn.addEventListener('click', function() {
     const total = subtotal + deliveryFee - promoDiscount;
     
     message += "--------------------------------\n";
-    message += `💰 *Sous-total:* ${subtotal.toFixed(2)} CFA\n`;
-    message += `🚚 *Livraison:* ${deliveryFee.toFixed(2)} CFA\n`;
-    message += `✅ *TOTAL À PAYER: ${total.toFixed(2)} CFA*\n\n`;
+    message += `💰 *Sous-total:* ${subtotal.toFixed(2)} MRU\n`;
+    message += `🚚 *Livraison:* ${deliveryFee.toFixed(2)} MRU\n`;
+    message += `✅ *TOTAL À PAYER: ${total.toFixed(2)} MRU*\n\n`;
     message += "Merci de me confirmer la réception et le délai de livraison !";
     
     // 3. Encodage du message pour l'URL

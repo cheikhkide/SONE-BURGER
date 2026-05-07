@@ -113,12 +113,12 @@ function initCarousel() {
     if (carouselContainer) {
         carouselContainer.addEventListener('touchstart', function(e) {
             touchStartX = e.changedTouches[0].screenX;
-        });
+        }, { passive: true });
 
         carouselContainer.addEventListener('touchend', function(e) {
             touchEndX = e.changedTouches[0].screenX;
             handleSwipe();
-        });
+        }, { passive: true });
 
         function handleSwipe() {
             if (touchEndX < touchStartX - 50) {
@@ -207,7 +207,7 @@ function initCart() {
             let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
             const menuItem = this.closest('.menu-item');
             const itemName = menuItem.querySelector('h3').textContent;
-            const itemPrice = menuItem.querySelector('.price').textContent;
+            const itemPrice = menuItem.querySelector('.price').textContent.replace(/[^\d.]/g, '');
             const itemImage = menuItem.querySelector('.menu-image img').getAttribute('src');
             
             // Vérifier si l'article existe déjà (par son nom)
@@ -305,7 +305,7 @@ function initNavbarScroll() {
         } else {
             navbar.classList.remove('scrolled');
         }
-    });
+    }, { passive: true });
 }
 
 // Contact Form
@@ -455,15 +455,6 @@ function initScrollAnimations() {
         observer.observe(item);
     });
 }
-// Loading Animation
-window.addEventListener('load', function() {
-    document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.5s ease';
-    
-    setTimeout(() => {
-        document.body.style.opacity = '1';
-    }, 100);
-});
 
 // Utility Functions
 function debounce(func, wait) {
