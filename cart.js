@@ -143,7 +143,7 @@ checkoutBtn.addEventListener('click', function() {
         return;
     }
     
-    const phoneNumber = "+22249057538"; 
+    const phoneNumber = "22249057538"; 
     
     // 2. Construction du message
     let message = "🍔 *NOUVELLE COMMANDE SONE BURGER* 🍔\n\n";
