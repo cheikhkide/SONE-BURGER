@@ -496,7 +496,7 @@ function updateAnimations() {
 
 // Initialize everything when page loads
 window.addEventListener('load', function() {
-    console.log('SNE BURGER - Site chargé avec succès!');
+    console.log('SONE BURGER - Site chargé avec succès!');
     
     // Check if cart has items and update count
     const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];

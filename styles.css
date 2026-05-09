@@ -17,6 +17,11 @@
     box-sizing: border-box;
 }
 
+html,
+body {
+    min-height: 100%;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
@@ -34,7 +39,11 @@ body {
 .navbar {
     position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     width: 100%;
+    padding: 0;
+    min-height: 80px;
     background: rgba(0, 0, 0, 0);
     backdrop-filter: blur(0px);
     z-index: 1000;
@@ -52,15 +61,17 @@ body {
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 1rem 2px;
+    padding: 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    min-height: 80px;
 }
 
 .logo img {
-    height: 55px;
+    height: 80px;
     width: auto;
+    margin: 0;
     margin-right: 10px;
 }
 
@@ -157,7 +168,7 @@ body {
 .hamburger span {
     width: 25px;
     height: 3px;
-    background: var(--dark-color);
+    background: var(--white);
     margin: 3px 0;
     transition: var(--transition);
     border-radius: 3px;
@@ -655,7 +666,7 @@ body {
 .footer {
     background: var(--dark-color);
     color: var(--white);
-    padding: 3rem 0;
+    padding: 3rem 0 calc(3rem + env(safe-area-inset-bottom));
 }
 
 .footer-content {
@@ -703,13 +714,13 @@ body {
     .navbar {
         background: rgba(0, 0, 0, 0.95) !important;
         backdrop-filter: blur(15px);
-        height: 70px;
+        min-height: 80px;
     }
 
     .nav-menu {
         position: fixed;
         left: -100%;
-        top: 70px;
+        top: 80px;
         flex-direction: column;
         background: rgba(0, 0, 0, 0.95);
         width: 100%;

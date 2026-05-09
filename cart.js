@@ -143,9 +143,7 @@ checkoutBtn.addEventListener('click', function() {
         return;
     }
     
-    // 1. Remplacez par votre numéro WhatsApp (format international sans le +)
-    // Exemple pour la Côte d'Ivoire : 2250102030405
-    const phoneNumber = "221784177960"; 
+    const phoneNumber = "+22249057538"; 
     
     // 2. Construction du message
     let message = "🍔 *NOUVELLE COMMANDE SONE BURGER* 🍔\n\n";
