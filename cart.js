@@ -142,7 +142,7 @@ checkoutBtn.addEventListener('click', function() {
         showNotification('Votre panier est vide', 'error');
         return;
     }
-                
+
     const phoneNumber = "22249057538"; 
     
     // 2. Construction du message
@@ -175,8 +175,8 @@ checkoutBtn.addEventListener('click', function() {
     showNotification('Préparation de votre message WhatsApp...');
     
     setTimeout(() => {
-        // Ouvre WhatsApp dans un nouvel onglet
-        window.open(whatsappUrl, '_blank');
+        // Ouvre WhatsApp via redirection (meilleur sur mobile)
+        window.location.href = whatsappUrl;
 
         // Vider le panier après l'envoi
         cartItems = [];
