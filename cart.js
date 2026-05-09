@@ -142,7 +142,7 @@ checkoutBtn.addEventListener('click', function() {
         showNotification('Votre panier est vide', 'error');
         return;
     }
-    
+                
     const phoneNumber = "22249057538"; 
     
     // 2. Construction du message
