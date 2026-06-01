@@ -1,6 +1,5 @@
 // DOM Elements
 let hamburger, navMenu, navbar, navLinks, prevBtn, nextBtn, slides, indicators, addToCartButtons, cartCount, contactForm, statNumbers, ctaButtons;
-let globalUpdateCartCount; // To hold the reference to the function from cart.js
 // Carousel Variables
 let currentSlide = 0;
 let totalSlides = 0;
@@ -23,8 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
     statNumbers = document.querySelectorAll('.stat-number');
     ctaButtons = document.querySelectorAll('.cta-button');
     totalSlides = slides.length;
-
-    globalUpdateCartCount = window.updateCartCount; // Get the function from cart.js
     initNavigation();
     initCart();
     initSmoothScroll();
@@ -228,10 +225,24 @@ function initCart() {
             
             localStorage.setItem('cartItems', JSON.stringify(cartItems));
             
-            globalUpdateCartCount(); // Use the global function from cart.js
+            updateCartCount();
             showAddedToCartAnimation(this);
         });
     });
+}
+
+function updateCartCount() {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+    
+    if (cartCount) {
+        cartCount.textContent = totalItems;
+        // Animate cart count
+        cartCount.style.transform = 'scale(1.3)';
+        setTimeout(() => {
+            cartCount.style.transform = 'scale(1)';
+        }, 200);
+    }
 }
 
 function showAddedToCartAnimation(button) {
@@ -463,11 +474,7 @@ const handleResize = debounce(function() {
 window.addEventListener('load', function() {
     console.log('SONE BURGER - Site chargé avec succès!');
     
-    if (globalUpdateCartCount) {
-        globalUpdateCartCount();
-    } else if (typeof updateCartCount === 'function') {
-        updateCartCount();
-    }
+    updateCartCount();
 });
 
 window.addEventListener('resize', handleResize);
