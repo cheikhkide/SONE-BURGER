@@ -1,6 +1,6 @@
 // DOM Elements
 let hamburger, navMenu, navbar, navLinks, prevBtn, nextBtn, slides, indicators, addToCartButtons, cartCount, contactForm, statNumbers, ctaButtons;
-
+let globalUpdateCartCount; // To hold the reference to the function from cart.js
 // Carousel Variables
 let currentSlide = 0;
 let totalSlides = 0;
@@ -18,12 +18,13 @@ document.addEventListener('DOMContentLoaded', function() {
     slides = document.querySelectorAll('.carousel-slide');
     indicators = document.querySelectorAll('.indicator');
     addToCartButtons = document.querySelectorAll('.add-to-cart');
-    cartCount = document.querySelector('.cart-count');
+    cartCount = document.querySelector('.cart-count'); // This is the cart count element in index.html
     contactForm = document.querySelector('.contact-form');
     statNumbers = document.querySelectorAll('.stat-number');
     ctaButtons = document.querySelectorAll('.cta-button');
     totalSlides = slides.length;
 
+    globalUpdateCartCount = window.updateCartCount; // Get the function from cart.js
     initNavigation();
     initCart();
     initSmoothScroll();
@@ -227,24 +228,10 @@ function initCart() {
             
             localStorage.setItem('cartItems', JSON.stringify(cartItems));
             
-            updateCartCount();
+            globalUpdateCartCount(); // Use the global function from cart.js
             showAddedToCartAnimation(this);
         });
     });
-}
-
-function updateCartCount() {
-    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-    const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
-    
-    if (!cartCount) return;
-    cartCount.textContent = totalItems;
-    
-    // Animate cart count
-    cartCount.style.transform = 'scale(1.3)';
-    setTimeout(() => {
-        cartCount.style.transform = 'scale(1)';
-    }, 200);
 }
 
 function showAddedToCartAnimation(button) {
@@ -395,18 +382,11 @@ function animateStats() {
 // CTA Buttons
 function initCTAButtons() {
     if (ctaButtons) ctaButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            if (this.classList.contains('primary')) {
-                // Scroll to menu section
-                const menuSection = document.querySelector('#menu');
-                if (menuSection) {
-                    const offsetTop = menuSection.offsetTop - 80;
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                }
-            } else if (this.classList.contains('secondary')) {
+        button.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent default button action if any
+            // Both primary and secondary CTA buttons seem to scroll to the menu section
+            // Consolidate this logic
+            if (this.classList.contains('cta-button')) { // Assuming all cta-buttons scroll to menu
                 // Scroll to menu section
                 const menuSection = document.querySelector('#menu');
                 if (menuSection) {
@@ -479,31 +459,18 @@ const handleResize = debounce(function() {
     }
 }, 250);
 
-window.addEventListener('resize', handleResize);
-
-// Performance Optimization
-let ticking = false;
-function requestTick() {
-    if (!ticking) {
-        requestAnimationFrame(updateAnimations);
-        ticking = true;
-    }
-}
-
-function updateAnimations() {
-    ticking = false;
-}
-
-// Initialize everything when page loads
+// Une seule fonction d'initialisation au chargement complet
 window.addEventListener('load', function() {
     console.log('SONE BURGER - Site chargé avec succès!');
     
-    // Check if cart has items and update count
-    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-    if (cartItems.length > 0) {
+    if (globalUpdateCartCount) {
+        globalUpdateCartCount();
+    } else if (typeof updateCartCount === 'function') {
         updateCartCount();
     }
 });
+
+window.addEventListener('resize', handleResize);
 
 // Error Handling
 window.addEventListener('error', function(e) {
